@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHttpBindingService", "Scenarios\Getting-Started-with-CoreWCF\WebHttpBindingService\WebHttpBindingService.csproj", "{E55D1F69-A60E-4026-991D-5C7497373D30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingSampleService", "Scenarios\Logging-and-Dependency-Injection\LoggingSampleService\LoggingSampleService.csproj", "{80DE028F-C94B-4B39-9674-B8604EDE2965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicHttpBindingService", "Basic\Binding\Basic\Http\BasicHttpBindingService\BasicHttpBindingService.csproj", "{2021AA50-D555-4DA9-BCAB-0408823709EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsHttpUserPasswordServer", "Basic\Binding\WS\WsHttpUserPasswordServer\WsHttpUserPasswordServer.csproj", "{CB1DAFCB-F0C7-4938-95CA-432FBEF790AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicHttpBindingClient", "Basic\Binding\Basic\Http\BasicHttpBindingClient\BasicHttpBindingClient.csproj", "{D52F01EC-BBEE-41A2-90C0-EBDF23438C2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHttpBindingClient", "Scenarios\Getting-Started-with-CoreWCF\WebHttpBindingClient\WebHttpBindingClient.csproj", "{56C6EB09-9261-45E6-9931-027048ACD6B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingSampleClient", "Scenarios\Logging-and-Dependency-Injection\LoggingSampleClient\LoggingSampleClient.csproj", "{76A5E608-96FA-4564-ACFA-3163549A3355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsHttpUserPasswordClient", "Basic\Binding\WS\WsHttpUserPasswordClient\WsHttpUserPasswordClient.csproj", "{537073FB-432D-4257-A254-C7D8C6483CFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E55D1F69-A60E-4026-991D-5C7497373D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55D1F69-A60E-4026-991D-5C7497373D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55D1F69-A60E-4026-991D-5C7497373D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55D1F69-A60E-4026-991D-5C7497373D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80DE028F-C94B-4B39-9674-B8604EDE2965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80DE028F-C94B-4B39-9674-B8604EDE2965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80DE028F-C94B-4B39-9674-B8604EDE2965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80DE028F-C94B-4B39-9674-B8604EDE2965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2021AA50-D555-4DA9-BCAB-0408823709EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2021AA50-D555-4DA9-BCAB-0408823709EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2021AA50-D555-4DA9-BCAB-0408823709EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2021AA50-D555-4DA9-BCAB-0408823709EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB1DAFCB-F0C7-4938-95CA-432FBEF790AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB1DAFCB-F0C7-4938-95CA-432FBEF790AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB1DAFCB-F0C7-4938-95CA-432FBEF790AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB1DAFCB-F0C7-4938-95CA-432FBEF790AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D52F01EC-BBEE-41A2-90C0-EBDF23438C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D52F01EC-BBEE-41A2-90C0-EBDF23438C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52F01EC-BBEE-41A2-90C0-EBDF23438C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52F01EC-BBEE-41A2-90C0-EBDF23438C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C6EB09-9261-45E6-9931-027048ACD6B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C6EB09-9261-45E6-9931-027048ACD6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C6EB09-9261-45E6-9931-027048ACD6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C6EB09-9261-45E6-9931-027048ACD6B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A5E608-96FA-4564-ACFA-3163549A3355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A5E608-96FA-4564-ACFA-3163549A3355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A5E608-96FA-4564-ACFA-3163549A3355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A5E608-96FA-4564-ACFA-3163549A3355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{537073FB-432D-4257-A254-C7D8C6483CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537073FB-432D-4257-A254-C7D8C6483CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537073FB-432D-4257-A254-C7D8C6483CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537073FB-432D-4257-A254-C7D8C6483CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

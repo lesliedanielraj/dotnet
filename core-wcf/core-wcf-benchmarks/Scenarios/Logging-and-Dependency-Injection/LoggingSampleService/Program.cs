@@ -1,5 +1,7 @@
 ﻿// Project created using the CoreWCF.Templates project template
 
+using LoggingSampleService;
+
 var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddServiceModelServices();

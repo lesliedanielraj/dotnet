@@ -1,4 +1,4 @@
-﻿namespace LoggingSample
+﻿namespace LoggingSampleService
 {
     [ServiceContract]
     public interface IService2

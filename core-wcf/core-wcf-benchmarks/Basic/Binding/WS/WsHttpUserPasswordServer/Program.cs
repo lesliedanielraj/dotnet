@@ -11,7 +11,7 @@ namespace NetCoreServer
 
         static void Main(string[] args)
         {
-            IWebHost host = CreateWebHostBuilder(args).Build();
+            var host = CreateWebHostBuilder(args).Build();
             host.Run();
         }
 

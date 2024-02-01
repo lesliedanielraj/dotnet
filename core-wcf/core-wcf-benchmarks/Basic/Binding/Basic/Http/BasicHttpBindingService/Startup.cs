@@ -18,9 +18,12 @@ namespace BasicHttpBindingService
         {
             app.UseServiceModel(builder =>
             {
-                // Add the Calculator Service
-                builder.AddService<CalculatorService>(serviceOptions => { })
-                // Add BasicHttpBinding endpoint
+                // Add the Services
+                builder.AddService<SearchService>(serviceOptions => { })
+                    .AddService<CalculatorService>(serviceOptions => { })
+                    // Add BasicHttpBinding endpoint
+                    .AddServiceEndpoint<SearchService, ISearchService>(new BasicHttpBinding(),
+                        "/SearchService/basicHttp")
                 .AddServiceEndpoint<CalculatorService, ICalculatorService>(new BasicHttpBinding(), "/CalculatorService/basicHttp");
 
                 // Configure WSDL to be available

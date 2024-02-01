@@ -3,10 +3,20 @@ using System.ServiceModel;
 using System.ServiceModel.Security;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkSwitcher.FromAssembly(typeof(WsHttpBindingBenchmarks).Assembly).Run(args, new DebugInProcessConfig());
 
+// [SimpleJob(RuntimeMoniker.Net472, baseline: true)]
+// [SimpleJob(RuntimeMoniker.NetCoreApp30)]
+[SimpleJob(RuntimeMoniker.Net60)]
+[SimpleJob(RuntimeMoniker.NativeAot60)]
+[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.NativeAot70)]
+[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.NativeAot80)]
+[RPlotExporter]
 public class WsHttpBindingBenchmarks
 {
         [Benchmark]

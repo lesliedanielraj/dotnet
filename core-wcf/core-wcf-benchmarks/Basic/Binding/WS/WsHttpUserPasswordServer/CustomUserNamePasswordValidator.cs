@@ -7,8 +7,8 @@ namespace NetCoreServer
     {
         public override ValueTask ValidateAsync(string userName, string password)
         {
-            bool valid = userName.ToLowerInvariant().EndsWith("valid")
-                && password.ToLowerInvariant().EndsWith("valid");
+            var valid = userName.ToLowerInvariant().EndsWith("valid")
+                        && password.ToLowerInvariant().EndsWith("valid");
             if (!valid)
             {
                 throw new FaultException("Unknown Username or Incorrect Password");

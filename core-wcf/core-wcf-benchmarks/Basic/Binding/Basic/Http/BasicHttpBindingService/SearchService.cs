@@ -29,15 +29,15 @@ public class SearchService : ISearchService
         var vectorLength = Vector128<int>.Count;
 
         // Batch <4 x int> per loop
-        for (var i = 0; i < vInts.Length; i++)
-        {
-            var result = Vector128.Equals(vInts[i], compareValue);
-            if (result == Vector128<int>.Zero) continue;
-
-            for (var k = 0; k < vectorLength; k++)
-                if (result.GetElement(k) != 0)
-                    return i * vectorLength + k;
-        }
+        // for (var i = 0; i < vInts.Length; i++)
+        // {
+        //     var result = Vector128.Equals(vInts[i], compareValue);
+        //     if (result == Vector128<int>.Zero) continue;
+        //
+        //     for (var k = 0; k < vectorLength; k++)
+        //         if (result.GetElement(k) != 0)
+        //             return i * vectorLength + k;
+        // }
 
         // Scalar process of the remaining
         for (var i = vInts.Length * vectorLength; i < data.Length; i++)
@@ -57,15 +57,15 @@ public class SearchService : ISearchService
         var vectorLength = Vector256<int>.Count;
 
         // Batch <8 x int> per loop
-        for (var i = 0; i < vInts.Length; i++)
-        {
-            var result = Vector256.Equals(vInts[i], compareValue);
-            if (result == Vector256<int>.Zero) continue;
-
-            for (var k = 0; k < vectorLength; k++)
-                if (result.GetElement(k) != 0)
-                    return i * vectorLength + k;
-        }
+        // for (var i = 0; i < vInts.Length; i++)
+        // {
+        //     var result = Vector256.Equals(vInts[i], compareValue);
+        //     if (result == Vector256<int>.Zero) continue;
+        //
+        //     for (var k = 0; k < vectorLength; k++)
+        //         if (result.GetElement(k) != 0)
+        //             return i * vectorLength + k;
+        // }
 
         // Scalar process of the remaining
         for (var i = vInts.Length * vectorLength; i < data.Length; i++)

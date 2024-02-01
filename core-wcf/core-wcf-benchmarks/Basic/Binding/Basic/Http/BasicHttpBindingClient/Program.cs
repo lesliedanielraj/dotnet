@@ -16,16 +16,12 @@ namespace BasicHttpBindingClient
         static void Main(string[] args) => BenchmarkSwitcher.FromAssembly(typeof(Client).Assembly).Run(args, new DebugInProcessConfig());
     }
 
-    // [SimpleJob(RuntimeMoniker.Net472, baseline: true)]
-    // [SimpleJob(RuntimeMoniker.NetCoreApp30)]
-    [SimpleJob(RuntimeMoniker.Net60)]
-    [SimpleJob(RuntimeMoniker.NativeAot60)]
-    [SimpleJob(RuntimeMoniker.Net70)]
-    [SimpleJob(RuntimeMoniker.NativeAot70)]
-    [SimpleJob(RuntimeMoniker.Net80)]
-    [SimpleJob(RuntimeMoniker.NativeAot80)]
-    [RPlotExporter]
+    [CsvExporter]
     [MemoryDiagnoser]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.Method)]
+    [SimpleJob(RuntimeMoniker.Net60)]
+    [SimpleJob(RuntimeMoniker.Net70)]
+    [SimpleJob(RuntimeMoniker.Net80)]
     public class CalculatorServiceBenchmarks
     {
         // Create a client with given client endpoint configuration
@@ -34,38 +30,30 @@ namespace BasicHttpBindingClient
         [Benchmark]
         public void Add() {
     
-            // Call the Add service operation.
             var value1 = 100.00D;
             var value2 = 15.99D;
             _client.Add(value1, value2);
-            // Console.WriteLine("Add({0},{1}) = {2}", value1, value2, result);
         }
     
         [Benchmark]
         public void Subtract() {
-            // Call the Subtract service operation.
             var value1 = 145.00D;
             var value2 = 76.54D;
             _client.Subtract(value1, value2);
-            // Console.WriteLine("Subtract({0},{1}) = {2}", value1, value2, result);
         }
     
         [Benchmark]
         public void Multiply() {
-            // Call the Multiply service operation.
             var value1 = 9.00D;
             var value2 = 81.25D;
             _client.Multiply(value1, value2);
-            // Console.WriteLine("Multiply({0},{1}) = {2}", value1, value2, result);
         }
     
         [Benchmark]
         public void Divide() {
-            // Call the Divide service operation.
             var value1 = 22.00D;
             var value2 = 7.00D;
             _client.Divide(value1, value2);
-            // Console.WriteLine("Divide({0},{1}) = {2}", value1, value2, result);
         }
     }
     

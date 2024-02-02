@@ -6,15 +6,15 @@ using WebHttpClient;
 
 BenchmarkSwitcher.FromAssembly(typeof(WebHttpBindingBenchmarks).Assembly).Run(args, new DebugInProcessConfig());
 
-// [SimpleJob(RuntimeMoniker.Net472, baseline: true)]
-// [SimpleJob(RuntimeMoniker.NetCoreApp30)]
+[CsvExporter]
+[MemoryDiagnoser]
+[Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.Method)]
 [SimpleJob(RuntimeMoniker.Net60)]
-[SimpleJob(RuntimeMoniker.NativeAot60)]
 [SimpleJob(RuntimeMoniker.Net70)]
-[SimpleJob(RuntimeMoniker.NativeAot70)]
 [SimpleJob(RuntimeMoniker.Net80)]
-[SimpleJob(RuntimeMoniker.NativeAot80)]
-[RPlotExporter]
+// [SimpleJob(RuntimeMoniker.NativeAot60)]
+// [SimpleJob(RuntimeMoniker.NativeAot70)]
+// [SimpleJob(RuntimeMoniker.NativeAot80)]
 public class WebHttpBindingBenchmarks
 {
     // Using a wrapper generated based on the service OpenAPI definition

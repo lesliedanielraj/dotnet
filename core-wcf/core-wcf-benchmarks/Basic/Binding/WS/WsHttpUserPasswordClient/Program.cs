@@ -50,14 +50,14 @@ namespace WsHttpUserPasswordClient
                 // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV",
                 // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_12345678"
             };
-            Parallel.ForEach(files, async file =>
+            Parallel.ForEach(files, file =>
             {
-                var hash = await _client.ComplexEchoAsync(new EchoMessage
+                _client.ComplexEchoAsync(new EchoMessage
                 {
                     Text = file
                 });
                 
-                Console.WriteLine($"Hash: {hash}");
+                // Console.WriteLine($"Hash: {hash}");
             });
             
             _client.Close();

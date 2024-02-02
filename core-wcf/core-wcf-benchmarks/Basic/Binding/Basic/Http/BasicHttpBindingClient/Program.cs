@@ -22,6 +22,9 @@ namespace BasicHttpBindingClient
     [SimpleJob(RuntimeMoniker.Net60)]
     [SimpleJob(RuntimeMoniker.Net70)]
     [SimpleJob(RuntimeMoniker.Net80)]
+    [SimpleJob(RuntimeMoniker.NativeAot60)]
+    [SimpleJob(RuntimeMoniker.NativeAot70)]
+    [SimpleJob(RuntimeMoniker.NativeAot80)]
     public class CalculatorServiceBenchmarks
     {
         // Create a client with given client endpoint configuration
@@ -57,38 +60,36 @@ namespace BasicHttpBindingClient
         }
     }
     
-    // [SimpleJob(RuntimeMoniker.Net472, baseline: true)]
-    // [SimpleJob(RuntimeMoniker.NetCoreApp30)]
-    // [SimpleJob(RuntimeMoniker.Net60)]
-    // [SimpleJob(RuntimeMoniker.NativeAot60)]
-    // [SimpleJob(RuntimeMoniker.Net70)]
-    // [SimpleJob(RuntimeMoniker.NativeAot70)]
-    // [SimpleJob(RuntimeMoniker.Net80)]
-    // [SimpleJob(RuntimeMoniker.NativeAot80)]
-    // [RPlotExporter]
-    // [MemoryDiagnoser]
-    // [MaxIterationCount(16)]
-    // public class SearchServiceBenchmarks
-    // {
-    //     // Create a client with given client endpoint configuration
-    //     private readonly SearchServiceClient _client = new();
-    //
-    //     [Benchmark]
-    //     public void FindSimpleAsync()
-    //     {
-    //         _client.FindSimpleAsync(5);
-    //     }
-    //
-    //     [Benchmark]
-    //     public void Find_Generic_128_Async() {
-    //         var data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    //         _client.Find_Generic_128_Async(data, 5);
-    //     }
-    //     
-    //     [Benchmark]
-    //     public void Find_Generic_256_Async() {
-    //         var data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    //         _client.Find_Generic_256_Async(data, 5);
-    //     }
-    // }
+    [CsvExporter]
+    [MemoryDiagnoser]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.Method)]
+    [SimpleJob(RuntimeMoniker.Net60)]
+    [SimpleJob(RuntimeMoniker.Net70)]
+    [SimpleJob(RuntimeMoniker.Net80)]
+    [SimpleJob(RuntimeMoniker.NativeAot60)]
+    [SimpleJob(RuntimeMoniker.NativeAot70)]
+    [SimpleJob(RuntimeMoniker.NativeAot80)]
+    public class SearchServiceBenchmarks
+    {
+        // Create a client with given client endpoint configuration
+        private readonly SearchServiceClient _client = new();
+    
+        [Benchmark]
+        public void FindSimpleAsync()
+        {
+            _client.FindSimpleAsync(5);
+        }
+    
+        [Benchmark]
+        public void Find_Generic_128_Async() {
+            var data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            _client.Find_Generic_128_Async(data, 5);
+        }
+        
+        [Benchmark]
+        public void Find_Generic_256_Async() {
+            var data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            _client.Find_Generic_256_Async(data, 5);
+        }
+    }
 }

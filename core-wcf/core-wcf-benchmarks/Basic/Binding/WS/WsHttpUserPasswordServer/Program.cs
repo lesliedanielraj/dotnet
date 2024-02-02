@@ -2,21 +2,22 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace NetCoreServer
+namespace WsHttpUserPasswordServer;
+
+class Program
 {
-    class Program
+    public const int HTTP_PORT = 8088;
+    public const int HTTPS_PORT = 8443;
+
+    static void Main(string[] args)
     {
-        public const int HTTP_PORT = 8088;
-        public const int HTTPS_PORT = 8443;
+        var host = CreateWebHostBuilder(args).Build();
+        host.Run();
+    }
 
-        static void Main(string[] args)
-        {
-            var host = CreateWebHostBuilder(args).Build();
-            host.Run();
-        }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
             .UseKestrel(options =>
             {
                 options.ListenLocalhost(HTTP_PORT);
@@ -31,6 +32,5 @@ namespace NetCoreServer
             })
 
             // Replace with other WSFedBinding or WSHttpWithWindowsAuthAndRoles for other binding types
-            .UseStartup<WSHttpUserPassword>();
-    }
+            .UseStartup<WsHttpUserPassword>();
 }

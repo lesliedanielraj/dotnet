@@ -1,28 +1,29 @@
-﻿using CoreWCF;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CoreWCF;
 
-namespace NetCoreServer
+namespace WsHttpUserPasswordServer;
+
+internal class CustomUserNamePasswordValidator : CoreWCF.IdentityModel.Selectors.UserNamePasswordValidator
 {
-    internal class CustomUserNamePasswordValidator : CoreWCF.IdentityModel.Selectors.UserNamePasswordValidator
+    public override ValueTask ValidateAsync(string userName, string password)
     {
-        public override ValueTask ValidateAsync(string userName, string password)
+        var valid = userName.ToLowerInvariant().EndsWith("valid")
+                    && password.ToLowerInvariant().EndsWith("valid");
+        if (!valid)
         {
-            var valid = userName.ToLowerInvariant().EndsWith("valid")
-                        && password.ToLowerInvariant().EndsWith("valid");
-            if (!valid)
-            {
-                throw new FaultException("Unknown Username or Incorrect Password");
-            }
-            return new ValueTask();
+            throw new FaultException("Unknown Username or Incorrect Password");
         }
 
-        public static void AddToHost(ServiceHostBase host)
-        {
-            var srvCredentials = new CoreWCF.Description.ServiceCredentials();
-            srvCredentials.UserNameAuthentication.UserNamePasswordValidationMode = CoreWCF.Security.UserNamePasswordValidationMode.Custom;
-            srvCredentials.UserNameAuthentication.CustomUserNamePasswordValidator = new CustomUserNamePasswordValidator();
-            host.Description.Behaviors.Add(srvCredentials);
-        }
+        return new ValueTask();
     }
 
+
+    public static void AddToHost(ServiceHostBase host)
+    {
+        var srvCredentials = new CoreWCF.Description.ServiceCredentials();
+        srvCredentials.UserNameAuthentication.UserNamePasswordValidationMode =
+            CoreWCF.Security.UserNamePasswordValidationMode.Custom;
+        srvCredentials.UserNameAuthentication.CustomUserNamePasswordValidator = new CustomUserNamePasswordValidator();
+        host.Description.Behaviors.Add(srvCredentials);
+    }
 }

@@ -3,19 +3,19 @@ using CoreWCF.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BasicHttpBindingService
+namespace BasicHttpBindingService;
+
+public class BasicHttpBindingStartup
 {
-    public class BasicHttpBindingStartup
+    public void ConfigureServices(IServiceCollection services)
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
             //Enable CoreWCF Services, with metadata (WSDL) support
             services.AddServiceModelServices()
                 .AddServiceModelMetadata();
         }
 
-        public void Configure(IApplicationBuilder app)
-        {
+    public void Configure(IApplicationBuilder app)
+    {
             app.UseServiceModel(builder =>
             {
                 // Add the Services
@@ -31,5 +31,4 @@ namespace BasicHttpBindingService
                 serviceMetadataBehavior.HttpGetEnabled = true;
             });
         }
-    }
 }

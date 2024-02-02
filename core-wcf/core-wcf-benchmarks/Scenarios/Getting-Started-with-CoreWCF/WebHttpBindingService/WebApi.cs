@@ -3,15 +3,14 @@
 
 using CoreWCF;
 
-namespace WebHttpBindingService
+namespace WebHttpBindingService;
+
+[ServiceBehavior(IncludeExceptionDetailInFaults = true, ConcurrencyMode = ConcurrencyMode.Multiple)]
+internal class WebApi : IWebApi
 {
-    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
-    internal class WebApi : IWebApi
-    {
-        public string PathEcho(string param) => param;
+    public string PathEcho(string param) => param;
 
-        public string QueryEcho(string param) => param;
+    public string QueryEcho(string param) => param;
 
-        public ExampleContract BodyEcho(ExampleContract param) => param;
-    }
+    public ExampleContract BodyEcho(ExampleContract param) => param;
 }

@@ -1,42 +1,41 @@
-﻿using CoreWCF;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using CoreWCF;
 
-namespace Contract
+namespace WsHttpUserPasswordServer;
+
+[DataContract]
+public class EchoFault
 {
-    [DataContract]
-    public class EchoFault
+    private string text;
+
+    [DataMember]
+    public string Text
     {
-        private string text;
+        get { return text; }
 
-        [DataMember]
-        public string Text
-        {
-            get { return text; }
-            set { text = value; }
-        }
+        set { text = value; }
     }
+}
 
-    [ServiceContract]
-    public interface IEchoService
-    {
-        [OperationContract]
-        string Echo(string text);
+[ServiceContract]
+public interface IEchoService
+{
+    [OperationContract]
+    string Echo(string text);
 
-        [OperationContract]
-        string ComplexEcho(EchoMessage text);
+    [OperationContract]
+    string ComplexEcho(EchoMessage text);
 
-        [OperationContract]
-        [FaultContract(typeof(EchoFault))]
-        string FailEcho(string text);
+    [OperationContract]
+    [FaultContract(typeof(EchoFault))]
+    string FailEcho(string text);
 
-        [OperationContract]
-        string EchoForPermission(string text);
-    }
+    [OperationContract]
+    string EchoForPermission(string text);
+}
 
-    [DataContract]
-    public class EchoMessage
-    {
-        [DataMember]
-        public string Text { get; set; }
-    }
+[DataContract]
+public class EchoMessage
+{
+    [DataMember] public string Text { get; set; }
 }

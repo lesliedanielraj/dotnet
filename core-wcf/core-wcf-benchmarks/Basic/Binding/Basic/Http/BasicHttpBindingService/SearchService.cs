@@ -1,9 +1,11 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics;
+using CoreWCF;
 
 namespace BasicHttpBindingService;
 
+[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
 public class SearchService : ISearchService
 {
     public int FindSimple( int value)

@@ -13,8 +13,8 @@ namespace ServiceReference1
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EchoMessage", Namespace="http://schemas.datacontract.org/2004/07/Contract")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EchoMessage", Namespace="http://schemas.datacontract.org/2004/07/WsHttpUserPasswordServer")]
     public partial class EchoMessage : object
     {
         
@@ -35,8 +35,8 @@ namespace ServiceReference1
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EchoFault", Namespace="http://schemas.datacontract.org/2004/07/Contract")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EchoFault", Namespace="http://schemas.datacontract.org/2004/07/WsHttpUserPasswordServer")]
     public partial class EchoFault : object
     {
         
@@ -56,7 +56,7 @@ namespace ServiceReference1
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IEchoService")]
     public interface IEchoService
     {
@@ -68,20 +68,20 @@ namespace ServiceReference1
         System.Threading.Tasks.Task<string> ComplexEchoAsync(ServiceReference1.EchoMessage text);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEchoService/FailEcho", ReplyAction="http://tempuri.org/IEchoService/FailEchoResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(ServiceReference1.EchoFault), Action="http://tempuri.org/IEchoService/FailEchoEchoFaultFault", Name="EchoFault", Namespace="http://schemas.datacontract.org/2004/07/Contract")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ServiceReference1.EchoFault), Action="http://tempuri.org/IEchoService/FailEchoEchoFaultFault", Name="EchoFault", Namespace="http://schemas.datacontract.org/2004/07/WsHttpUserPasswordServer")]
         System.Threading.Tasks.Task<string> FailEchoAsync(string text);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEchoService/EchoForPermission", ReplyAction="http://tempuri.org/IEchoService/EchoForPermissionResponse")]
         System.Threading.Tasks.Task<string> EchoForPermissionAsync(string text);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public interface IEchoServiceChannel : ServiceReference1.IEchoService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public partial class EchoServiceClient : System.ServiceModel.ClientBase<ServiceReference1.IEchoService>, ServiceReference1.IEchoService
     {
         
@@ -143,51 +143,35 @@ namespace ServiceReference1
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
         
-        public virtual System.Threading.Tasks.Task CloseAsync()
-        {
-            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
-        }
-        
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IEchoService))
             {
-                System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
-                System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
-                result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpTransportBindingElement httpBindingElement = new System.ServiceModel.Channels.HttpTransportBindingElement();
-                httpBindingElement.AllowCookies = true;
-                httpBindingElement.MaxBufferSize = int.MaxValue;
-                httpBindingElement.MaxReceivedMessageSize = int.MaxValue;
-                result.Elements.Add(httpBindingElement);
+                System.ServiceModel.WSHttpBinding result = new System.ServiceModel.WSHttpBinding();
+                result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
+                result.MaxReceivedMessageSize = int.MaxValue;
+                result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.SecurityMode.None;
                 return result;
             }
             if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IEchoService1))
             {
-                System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
-                System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
-                result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpsTransportBindingElement httpsBindingElement = new System.ServiceModel.Channels.HttpsTransportBindingElement();
-                httpsBindingElement.AllowCookies = true;
-                httpsBindingElement.MaxBufferSize = int.MaxValue;
-                httpsBindingElement.MaxReceivedMessageSize = int.MaxValue;
-                httpsBindingElement.AuthenticationScheme = System.Net.AuthenticationSchemes.Negotiate;
-                result.Elements.Add(httpsBindingElement);
+                System.ServiceModel.WSHttpBinding result = new System.ServiceModel.WSHttpBinding();
+                result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
+                result.MaxReceivedMessageSize = int.MaxValue;
+                result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.SecurityMode.Transport;
                 return result;
             }
             if ((endpointConfiguration == EndpointConfiguration.AuthenticatedEP))
             {
-                System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
-                System.ServiceModel.Channels.TransportSecurityBindingElement userNameOverTransportSecurityBindingElement = System.ServiceModel.Channels.SecurityBindingElement.CreateUserNameOverTransportBindingElement();
-                userNameOverTransportSecurityBindingElement.MessageSecurityVersion = System.ServiceModel.MessageSecurityVersion.WSSecurity11WSTrustFebruary2005WSSecureConversationFebruary2005WSSecurityPolicy11BasicSecurityProfile10;
-                result.Elements.Add(userNameOverTransportSecurityBindingElement);
-                System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
-                result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpsTransportBindingElement httpsBindingElement = new System.ServiceModel.Channels.HttpsTransportBindingElement();
-                httpsBindingElement.AllowCookies = true;
-                httpsBindingElement.MaxBufferSize = int.MaxValue;
-                httpsBindingElement.MaxReceivedMessageSize = int.MaxValue;
-                result.Elements.Add(httpsBindingElement);
+                System.ServiceModel.WSHttpBinding result = new System.ServiceModel.WSHttpBinding();
+                result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
+                result.MaxReceivedMessageSize = int.MaxValue;
+                result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.SecurityMode.TransportWithMessageCredential;
+                result.Security.Transport.ClientCredentialType = System.ServiceModel.HttpClientCredentialType.None;
+                result.Security.Message.ClientCredentialType = System.ServiceModel.MessageCredentialType.UserName;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));

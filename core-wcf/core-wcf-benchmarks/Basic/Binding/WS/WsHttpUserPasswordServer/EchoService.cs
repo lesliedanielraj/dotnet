@@ -15,7 +15,7 @@ public class EchoService : IEchoService
 
     public string ComplexEcho(EchoMessage text)
     {
-        var hash = GetHash(text.Text).ToString();
+        var hash = Encoding.Default.GetString(GetHash(text.Text));
         System.Console.WriteLine($"Received {text.Text} from client! Hash: {hash}");
         return hash;
     }

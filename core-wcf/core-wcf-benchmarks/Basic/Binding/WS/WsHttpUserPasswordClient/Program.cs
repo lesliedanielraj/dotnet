@@ -43,15 +43,25 @@ namespace WsHttpUserPasswordClient
 
             client.ClientCredentials.ServiceCertificate.SslCertificateAuthentication = cert;
 
-            const string text = "Leslie Daniel Raj";
             await client.OpenAsync();
-            var hash = await client.ComplexEchoAsync(new EchoMessage
+
+            var files = new[] {
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_12345678"
+            };
+            Parallel.ForEach(files, async file =>
             {
-                Text = text
+                var hash = await client.ComplexEchoAsync(new EchoMessage
+                {
+                    Text = file
+                });
+                
+                Console.WriteLine($"Hash: {hash}");
             });
-            client.Close();
             
-            Console.WriteLine($"String: {text}, Hash: {hash}");
+            client.Close();
         }
     }
 }

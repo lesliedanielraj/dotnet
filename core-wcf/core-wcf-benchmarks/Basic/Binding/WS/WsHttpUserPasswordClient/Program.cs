@@ -9,10 +9,7 @@ using BenchmarkDotNet.Running;
 using ServiceReference1;
 using WsHttpUserPasswordClient;
 
-BenchmarkSwitcher.FromAssembly(typeof(WsHttpBindingBenchmarks).Assembly).Run(args, new DebugInProcessConfig
-{
-    
-});
+BenchmarkSwitcher.FromAssembly(typeof(WsHttpBindingBenchmarks).Assembly).Run(args, new DebugInProcessConfig());
 
 namespace WsHttpUserPasswordClient
 {
@@ -27,23 +24,25 @@ namespace WsHttpUserPasswordClient
 // [SimpleJob(RuntimeMoniker.NativeAot80)]
     public class WsHttpBindingBenchmarks
     {
+        private EchoServiceClient _client;
+        
         [Benchmark]
         public async Task Testing_EchoAsync()
         {
-            EchoServiceClient client;
             var wsHttpBindingWithCredential = new WSHttpBinding(SecurityMode.TransportWithMessageCredential);
             wsHttpBindingWithCredential.Security.Message.ClientCredentialType = MessageCredentialType.UserName;
-            client = new EchoServiceClient(wsHttpBindingWithCredential, new EndpointAddress("https://localhost:8443/EchoService/wsHttpUserPassword"));
-            var up = client.ClientCredentials.UserName;
+            _client = new EchoServiceClient(wsHttpBindingWithCredential, new EndpointAddress("https://localhost:8443/EchoService/wsHttpUserPassword"));
+            var up = _client.ClientCredentials.UserName;
             up.UserName = "ImValid";
             up.Password = "passwordIsValid";
 
             var cert = new X509ServiceCertificateAuthentication();
             cert.CertificateValidationMode = X509CertificateValidationMode.None;
 
-            client.ClientCredentials.ServiceCertificate.SslCertificateAuthentication = cert;
+            _client.ClientCredentials.ServiceCertificate.SslCertificateAuthentication = cert;
 
-            await client.OpenAsync();
+            await _client.OpenAsync();
+            
 
             var files = new[] {
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
@@ -53,7 +52,7 @@ namespace WsHttpUserPasswordClient
             };
             Parallel.ForEach(files, async file =>
             {
-                var hash = await client.ComplexEchoAsync(new EchoMessage
+                var hash = await _client.ComplexEchoAsync(new EchoMessage
                 {
                     Text = file
                 });
@@ -61,7 +60,7 @@ namespace WsHttpUserPasswordClient
                 Console.WriteLine($"Hash: {hash}");
             });
             
-            client.Close();
+            _client.Close();
         }
     }
 }

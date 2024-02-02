@@ -12,7 +12,7 @@
     "namespaceMappings": [
       "*, ServiceReference1"
     ],
-    "outputFile": "Reference",
+    "outputFile": "EchoService",
     "targetFramework": "net6.0",
     "typeReuseMode": "All"
   }

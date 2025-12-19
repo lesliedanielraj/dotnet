@@ -30,6 +30,12 @@ public class Function
     /// <returns></returns>
     public static string FunctionHandler(string input, ILambdaContext context)
     {
-        return input.ToUpper();
+        var dotnetVersion = Environment.Version.ToString();
+        var processArchitecture = System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture;
+        var frameworkDescription = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+        var osArchitecture = System.Runtime.InteropServices.RuntimeInformation.OSArchitecture;
+        var osDescription = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+        
+        return $".NET: {dotnetVersion}\nArchitecture: {processArchitecture}\nFramework: {frameworkDescription}\nOS Architecture: {osArchitecture}\nOS Description: {osDescription}";
     }
 }

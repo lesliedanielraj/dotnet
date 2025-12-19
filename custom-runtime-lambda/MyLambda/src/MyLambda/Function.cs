@@ -28,7 +28,7 @@ public class Function
     /// <param name="input">The input to the Lambda function handler.</param>
     /// <param name="context">The ILambdaContext that provides methods for logging and describing the Lambda environment.</param>
     /// <returns></returns>
-    public static string FunctionHandler(string input, ILambdaContext context)
+    public static string FunctionHandler(object input, ILambdaContext context)
     {
         var dotnetVersion = Environment.Version.ToString();
         var processArchitecture = System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture;

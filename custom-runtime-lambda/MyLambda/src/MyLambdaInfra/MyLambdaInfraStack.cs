@@ -15,7 +15,7 @@ namespace MyLambdaInfra
                 MemorySize = 256,
                 Timeout = Duration.Seconds(30),
                 Handler = "MyLambda::MyLambda.Function::FunctionHandler",
-                Code = Code.FromAsset("../MyLambda/output.zip")
+                Code = Code.FromAsset("./src/MyLambda/output.zip")
             });
         }
     }
